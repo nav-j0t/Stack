@@ -1,7 +1,12 @@
 main {
-  min-height: 80vh;
+  min-height: 85vh;
 }
 
 a {
   text-decoration: none;
+}
+
+.rating {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
