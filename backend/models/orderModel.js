@@ -3,7 +3,7 @@ import mongoose, { Mongoose } from 'mongoose';
 const orderSchema = mongoose.Schema(
   {
     user: {
-      type: mongoose.Schema.Types.Schema,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'User',
     },
@@ -82,5 +82,5 @@ const orderSchema = mongoose.Schema(
   }
 );
 
-const Order = mongoose.model('Order', userSchema);
+const Order = mongoose.model('Order', orderSchema);
 export default Order;
