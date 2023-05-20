@@ -1,5 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
+// below is importing useNAvigate and this it the newer version to usehistory as of higher version than 6.x.x
+import { useNavigate } from 'react-router-dom';
+
 import { useParams } from 'react-router-dom';
 import {
   Row,
@@ -21,6 +25,8 @@ import Message from '../components/Message.js';
 const ProductScreen = () => {
   const { id } = useParams();
 
+  const [qty, setQty] = useState(1);
+
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -29,6 +35,11 @@ const ProductScreen = () => {
   useEffect(() => {
     dispatch(listProductDetails(id));
   }, [dispatch, id]);
+
+  const navigate = useNavigate();
+  const addToCartHandler = () => {
+    navigate(`/cart/${id}?qty${qty}`);
+  };
 
   return (
     <>
@@ -80,13 +91,37 @@ const ProductScreen = () => {
                   </Col>
                 </Row>
               </ListGroup.Item>
+
+              {/* For selecting and making tht Qty dropdown list  work */}
+              {product.countInStock > 0 && (
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Qty:</Col>
+                    <Col>
+                      <Form.Control
+                        as='select'
+                        value={qty}
+                        onChange={(e) => setQty(e.target.value)}
+                      >
+                        {[...Array(product.countInStock).keys()].map((x) => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              )}
+
               <ListGroup.Item className='my-2'>
                 <Button
+                  onClick={addToCartHandler}
                   disabled={product.countInStock === 0}
                   className='btn-block'
                   type='button'
                 >
-                  Add To Cart{' '}
+                  Add To Cart
                 </Button>
               </ListGroup.Item>
             </ListGroup>
