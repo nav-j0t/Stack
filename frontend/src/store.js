@@ -5,13 +5,33 @@ import {
   productListReducer,
   productDetailsReducer,
 } from './reducers/productReducer.js';
+import { cartReducer } from './reducers/cartReducer.js';
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
+  cart: cartReducer,
 });
 
-const initialState = {};
+// ----------------
+
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : [];
+
+//GPT-troubleshoot
+console.log('cartItemsFromStorage:', cartItemsFromStorage);
+
+const initialState = {
+  cart: {
+    cartItems: cartItemsFromStorage,
+  },
+};
+
+//GPT
+console.log('initialState:', initialState); // Add this line to check the value
+
+// --------------------
 
 const middleware = [thunk];
 
