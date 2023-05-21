@@ -18,6 +18,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
 
   // ----------------
 
+  //-troubleshoot
   console.log(
     'cartItems stored in localStorage:',
     JSON.stringify(getState().cart.cartItems)

@@ -19,7 +19,7 @@ const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : [];
 
-//GPT-troubleshoot
+//-troubleshoot
 console.log('cartItemsFromStorage:', cartItemsFromStorage);
 
 const initialState = {
