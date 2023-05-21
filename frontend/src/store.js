@@ -6,18 +6,22 @@ import {
   productDetailsReducer,
 } from './reducers/productReducer.js';
 import { cartReducer } from './reducers/cartReducer.js';
+import { userLoginReducer } from './reducers/userReducers.js';
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
+  userLogin: userLoginReducer,
 });
-
-// ----------------
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : [];
+
+const userInfoFromStorage = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : null;
 
 //-troubleshoot
 console.log('cartItemsFromStorage:', cartItemsFromStorage);
@@ -26,12 +30,10 @@ const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
   },
+  userLogin: {
+    userInfo: userInfoFromStorage,
+  },
 };
-
-//GPT
-console.log('initialState:', initialState); // Add this line to check the value
-
-// --------------------
 
 const middleware = [thunk];
 
