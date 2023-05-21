@@ -5,15 +5,7 @@ import { Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 import { useParams } from 'react-router-dom';
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  ListGroupItem,
-} from 'react-bootstrap';
+import { Row, Col, Image, ListGroup, Button } from 'react-bootstrap';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { listProductDetails } from '../actions/productActions.js';
